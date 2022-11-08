@@ -1,0 +1,16 @@
+code {
+  font-size: 14px;
+}
+
+.method {
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.col-12 {
+  width: 50%;
+}
