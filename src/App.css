@@ -1,20 +1,26 @@
 .App {
   min-height: 100vh;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  display: flex;
 }
 
 .header {
   padding: 15px 0;
 }
 
+.aside {
+  width: 250px;
+  padding: 15px;
+  border-right: 1px solid #f2f2f2;
+}
+
 .main {
-  padding: 15px 0;
+  padding: 15px;
+  flex-grow: 1;
 }
 
 .divider {
   border: unset;
   border-top: 1px solid #f2f2f2;
-  margin: 25px 0;
+  margin: 20px 0;
 }

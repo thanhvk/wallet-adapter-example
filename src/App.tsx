@@ -4,8 +4,8 @@ import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-r
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo } from 'react';
-import MainAccount from './components/MainAccount';
-import TokenAccountList from './components/TokenAccountList';
+import MainAccount from './components/account/MainAccount';
+import TokenAccountList from './components/account/TokenAccountList';
 
 require('./App.css');
 require('@solana/wallet-adapter-react-ui/styles.css');
@@ -58,7 +58,7 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
 const Content: FC = () => {
   return (
     <div className='App'>
-      <div className='header'><WalletMultiButton /></div>
+      <div className='aside'><WalletMultiButton /></div>
       <div className='main'>
         <MainAccount />
         <hr className='divider' />
