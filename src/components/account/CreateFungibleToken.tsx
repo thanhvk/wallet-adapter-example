@@ -134,14 +134,16 @@ const CreateFungibleToken = () => {
     );
 
     console.log(`---STEP 3: Executing Mint Transaction---`);
-    if (newMintTransaction) {
+    if (newMintTransaction && wallet.signTransaction) {
       const {
         context: { slot: minContextSlot },
-        value: { blockhash, lastValidBlockHeight },
+        value: { blockhash },
       } = await connection.getLatestBlockhashAndContext();
       
       newMintTransaction.feePayer = wallet.publicKey;
       newMintTransaction.recentBlockhash = blockhash;
+      newMintTransaction.partialSign(mintKeypair);
+
       const transactionId =  await wallet.sendTransaction(newMintTransaction, connection, { minContextSlot });
       
       console.log(`Transaction ID: `, transactionId);
