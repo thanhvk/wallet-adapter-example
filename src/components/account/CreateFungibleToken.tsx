@@ -6,7 +6,7 @@ import { useCallback, useMemo } from 'react';
 import { useConnection, useWallet, WalletContextState } from '@solana/wallet-adapter-react';
 
 const MINT_CONFIG = {
-  numDecimals: 0,
+  numDecimals: 6,
   numberTokens: 1000
 }
 
