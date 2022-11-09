@@ -2,6 +2,11 @@ code {
   font-size: 14px;
 }
 
+.highlight {
+  padding: 2px 0;
+  background-color: #ffeb3b;
+}
+
 .method {
   margin-bottom: 12px;
 }
@@ -13,4 +18,19 @@ code {
 
 .col-12 {
   width: 50%;
+}
+
+.btn {
+  padding: 15px 25px;
+  border-width: 1px;
+  border-radius: 7px;
+}
+
+.token-account-item {
+  padding: 7px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.token-account-item:last-child {
+  border-bottom: unset;
 }

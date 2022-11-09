@@ -32,7 +32,7 @@ const MainAccount = () => {
 
   return (
   <div>
-    <div className='method'><code className='method'>getAccountInfo</code></div>
+    <div className='method'><code className='method highlight'>getAccountInfo</code></div>
 
     <div className='row'>
       <div className='col-12'>

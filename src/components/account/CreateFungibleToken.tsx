@@ -155,7 +155,7 @@ const CreateFungibleToken = () => {
 
   return (
     <div>
-      <button onClick={createFungibleToken}>Create Fungible Token</button>
+      <button className="btn" onClick={createFungibleToken}>Create Fungible Token</button>
     </div>
   );
 }
