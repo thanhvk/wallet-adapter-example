@@ -23,6 +23,9 @@ module.exports = function (config, env) {
         plugins: [
             ...config.plugins,
             new ProvidePlugin({
+                Buffer: ['buffer', 'Buffer'],
+            }),
+            new ProvidePlugin({
                 process: 'process/browser',
             }),
         ],
@@ -33,6 +36,8 @@ module.exports = function (config, env) {
                 buffer: require.resolve('buffer'),
                 crypto: require.resolve('crypto-browserify'),
                 stream: require.resolve('stream-browserify'),
+                zlib: require.resolve("browserify-zlib"),
+                path: require.resolve("path-browserify"),
             },
         },
         ignoreWarnings: [/Failed to parse source map/],

@@ -4,6 +4,7 @@ import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-r
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo } from 'react';
+import CreateFungibleToken from './components/account/CreateFungibleToken';
 import MainAccount from './components/account/MainAccount';
 import TokenAccountList from './components/account/TokenAccountList';
 
@@ -63,6 +64,8 @@ const Content: FC = () => {
         <MainAccount />
         <hr className='divider' />
         <TokenAccountList />
+        <hr className='divider' />
+        <CreateFungibleToken />
       </div>
     </div>
   );
