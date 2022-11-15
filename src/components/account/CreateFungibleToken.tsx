@@ -1,8 +1,8 @@
+import { useCallback, useMemo, useState } from 'react';
 import { Transaction, SystemProgram, Keypair, Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { MINT_SIZE, TOKEN_PROGRAM_ID, createInitializeMintInstruction, getMinimumBalanceForRentExemptMint, getAssociatedTokenAddress, createAssociatedTokenAccountInstruction, createMintToInstruction } from '@solana/spl-token';
 import { DataV2, createCreateMetadataAccountV2Instruction } from '@metaplex-foundation/mpl-token-metadata';
 import { bundlrStorage, Metaplex, UploadMetadataInput, walletAdapterIdentity } from '@metaplex-foundation/js';
-import { useCallback, useMemo } from 'react';
 import { useConnection, useWallet, WalletContextState } from '@solana/wallet-adapter-react';
 
 const MINT_CONFIG = {
@@ -100,6 +100,8 @@ const createNewMintTransaction = async (metaplex: Metaplex, connection:Connectio
 const CreateFungibleToken = () => {
   const { connection } = useConnection();
   const wallet = useWallet();
+  const [mint, setMint] = useState<string | undefined>();
+  const [tx, setTx] = useState<string | undefined>();
 
   //create metaplex instance on devnet using this wallet
   const metaplex = useMemo(() => {
@@ -145,17 +147,25 @@ const CreateFungibleToken = () => {
       newMintTransaction.partialSign(mintKeypair);
 
       const transactionId =  await wallet.sendTransaction(newMintTransaction, connection, { minContextSlot });
+      setMint(mintKeypair.publicKey.toBase58());
+      setTx(transactionId);
       
       console.log(`Transaction ID: `, transactionId);
       console.log(`Succesfully minted ${MINT_CONFIG.numberTokens} ${ON_CHAIN_METADATA.symbol} to ${wallet.publicKey?.toString()}.`);
       console.log(`View Transaction: https://solscan.io/tx/${transactionId}?cluster=devnet`);
-      console.log(`View Token Mint: https://solscan.io/token/${mintKeypair.publicKey.toString()}?cluster=devnet`)
+      console.log(`View Token Mint: https://solscan.io/token/${mintKeypair.publicKey.toBase58()}?cluster=devnet`)
     }
   }, [connection, metaplex, wallet])
 
   return (
     <div>
       <button className="btn" onClick={createFungibleToken}>Create Fungible Token</button>
+      {!!mint && !!tx &&
+        <>
+          <div>View token: <a href={`https://solscan.io/token/${mint}?cluster=devnet`} target="_blank" rel="noreferrer">{mint}</a></div>
+          <div>View tx: <a href={`https://solscan.io/tx/${tx}?cluster=devnet`} target="_blank" rel="noreferrer">{tx}</a></div>
+        </>
+      }
     </div>
   );
 }
