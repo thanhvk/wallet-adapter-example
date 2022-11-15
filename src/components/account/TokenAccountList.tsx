@@ -50,18 +50,26 @@ const TokenAccountList = () => {
 
   return (
   <div>
-    <div className='method'><code className='method highlight'>getParsedTokenAccountsByOwner</code></div>
+    <div className='section-header'>
+      <code className='method highlight'>getParsedTokenAccountsByOwner</code>
+      <code>&#40;total: {parsedTokenAccounts.length} items&#41;</code>
+    </div>
 
     <div className='row'>
       <div className='col-12'>
-        {parsedTokenAccounts.map((token: any, idx: number) => {
-          return (
-            <div key={idx} className='token-account-item'>
-              <div><code>{token.mint}</code></div>
-              <div><code>{token.tokenAmount.uiAmount}</code></div>
-            </div>
-          );
-        })}
+        <div className='token-account-list'>
+          {parsedTokenAccounts.map((token: any, idx: number) => {
+            return (
+              <div key={idx} className='token-account-item'>
+                <div><code>&#40;{idx + 1}&#41;</code></div>
+                <div>
+                  <div><code>{token.mint}</code></div>
+                  <div><code>{token.tokenAmount.uiAmount}</code></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className='col-12'>
         <ReactJson displayObjectSize={false} name={false} collapsed={1} src={tokenAccountResult} />
