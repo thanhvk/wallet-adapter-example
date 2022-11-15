@@ -11,6 +11,7 @@ const parser = (tokenAccount: any) => {
   const parsedAccountInfo = {
     ...tokenAccount.account.data.parsed.info,
     programOwner: tokenAccount.account.owner.toBase58(),
+    pubkey: tokenAccount.pubkey.toBase58(),
   };
 
   return parsedAccountInfo;
@@ -63,8 +64,21 @@ const TokenAccountList = () => {
               <div key={idx} className='token-account-item'>
                 <div><code>&#40;{idx + 1}&#41;</code></div>
                 <div>
-                  <div><code>{token.mint}</code></div>
-                  <div><code>{token.tokenAmount.uiAmount}</code></div>
+                  <div>
+                    <code>token account:</code>&nbsp;
+                    <a href={`https://solscan.io/account/${token.pubkey}?cluster=devnet`} target="_blank" rel="noreferrer">
+                      <code>{token.pubkey}</code>
+                    </a>
+                  </div>
+                  <div>
+                    <code>mint:</code>&nbsp;
+                    <a href={`https://solscan.io/account/${token.mint}?cluster=devnet`} target="_blank" rel="noreferrer">
+                      <code>{token.mint}</code>
+                    </a>
+                  </div>
+                  <div><code>balance: {token.tokenAmount.uiAmount}</code></div>
+                  <div><code>balance: {token.tokenAmount.decimals}</code></div>
+                  <div><code>program: {token.programOwner}</code></div>
                 </div>
               </div>
             );

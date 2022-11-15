@@ -11,6 +11,10 @@ code {
   margin-bottom: 12px;
 }
 
+.line {
+  margin-bottom: 5px;
+}
+
 .row {
   display: flex;
   gap: 15px;
@@ -21,7 +25,8 @@ code {
 }
 
 .btn {
-  padding: 15px 25px;
+  cursor: pointer;
+  padding: 10px 25px;
   border-width: 1px;
   border-radius: 7px;
 }
@@ -40,4 +45,16 @@ code {
 
 .token-account-item:last-child {
   border-bottom: unset;
+}
+
+.create-token,
+.send-token {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-styled {
+  padding: 10px 15px;
+  border-radius: 7px;
 }

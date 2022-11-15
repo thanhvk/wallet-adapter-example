@@ -6,6 +6,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo } from 'react';
 import CreateFungibleToken from './components/account/CreateFungibleToken';
 import MainAccount from './components/account/MainAccount';
+import SendToken from './components/account/SendToken';
 import TokenAccountList from './components/account/TokenAccountList';
 
 require('./App.css');
@@ -66,6 +67,8 @@ const Content: FC = () => {
         <TokenAccountList />
         <hr className='divider' />
         <CreateFungibleToken />
+        <hr className='divider' />
+        <SendToken />
       </div>
     </div>
   );

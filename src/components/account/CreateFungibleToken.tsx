@@ -158,12 +158,16 @@ const CreateFungibleToken = () => {
   }, [connection, metaplex, wallet])
 
   return (
-    <div>
+    <div className="create-token">
+      <div className='section-header'>
+        <code className='method highlight'>Create Fungible token</code>
+      </div>
+
       <button className="btn" onClick={createFungibleToken}>Create Fungible Token</button>
       {!!mint && !!tx &&
         <>
-          <div>View token: <a href={`https://solscan.io/token/${mint}?cluster=devnet`} target="_blank" rel="noreferrer">{mint}</a></div>
-          <div>View tx: <a href={`https://solscan.io/tx/${tx}?cluster=devnet`} target="_blank" rel="noreferrer">{tx}</a></div>
+          <div><code>View token: <a href={`https://solscan.io/token/${mint}?cluster=devnet`} target="_blank" rel="noreferrer">{mint}</a></code></div>
+          <div><code>View tx: <a href={`https://solscan.io/tx/${tx}?cluster=devnet`} target="_blank" rel="noreferrer">{tx}</a></code></div>
         </>
       }
     </div>
