@@ -71,49 +71,66 @@ const SendToken = () => {
         <div><code>View tx: <a href={`https://solscan.io/tx/${signature}?cluster=devnet`} target="_blank" rel="noreferrer">{signature}</a></code></div>
       }
 
-      <input
-        name="receiver"
-        className="input-styled"
-        placeholder="receiver"
-        value={formValue.receiver}
-        onChange={onChange}
-      />
+      <div>
+        <code className="input-label">Receiver</code>
+        <input
+          name="receiver"
+          className="input-styled"
+          placeholder="receiver"
+          value={formValue.receiver}
+          onChange={onChange}
+        />
+      </div>
 
-      <input
-        name="tokenAmount"
-        className="input-styled"
-        placeholder="token account"
-        value={formValue.tokenAccount}
-        onChange={onChange}
-      />
+      <div>
+        <code className="input-label">Token Amount</code>
+        <input
+          name="tokenAmount"
+          className="input-styled"
+          placeholder="token account"
+          value={formValue.tokenAccount}
+          onChange={onChange}
+        />
+      </div>
 
-      <input
-        name="mint"
-        className="input-styled"
-        placeholder="mint"
-        value={formValue.mint}
-        onChange={onChange}
-      />
+      <div>
+        <code className="input-label">Mint</code>
+        <input
+          name="mint"
+          className="input-styled"
+          placeholder="mint"
+          value={formValue.mint}
+          onChange={onChange}
+        />
+      </div>
 
-      <input
-        name="amount"
-        type="number"
-        className="input-styled"
-        placeholder="amount"
-        value={formValue.amount}
-        onChange={onChange}
-      />
+      <div>
+        <code className="input-label">Amount</code>
+        <input
+          name="amount"
+          type="number"
+          className="input-styled"
+          placeholder="amount"
+          value={formValue.amount}
+          onChange={onChange}
+        />
+      </div>
 
-      <input
-        name="decimals"
-        type="number"
-        className="input-styled"
-        placeholder="decimals"
-        value={formValue.decimals}
-        onChange={onChange}
-      />
+      <div>
+        <code className="input-label">Decimals</code>
+        <input
+          name="decimals"
+          type="number"
+          className="input-styled"
+          placeholder="decimals"
+          value={formValue.decimals}
+          onChange={onChange}
+        />
+      </div>
 
-      <button className="btn" onClick={onSendToken}>Send Token</button>
+      <div>
+        <button className="btn" onClick={onSendToken}>Send Token</button>
+      </div>
     </div>
   );
 };

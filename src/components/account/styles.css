@@ -29,6 +29,7 @@ code {
   padding: 10px 25px;
   border-width: 1px;
   border-radius: 7px;
+  min-width: 220px;
 }
 
 .token-account-list {
@@ -54,7 +55,13 @@ code {
   gap: 10px;
 }
 
+.input-label {
+  width: 150px;
+  display: inline-block;
+}
+
 .input-styled {
   padding: 10px 15px;
   border-radius: 7px;
+  width: 350px;
 }
