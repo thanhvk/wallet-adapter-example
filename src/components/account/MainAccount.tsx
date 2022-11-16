@@ -7,10 +7,10 @@ import './styles.css';
 const parser = (accountInfo: any) => {
   if (!accountInfo) return accountInfo;
 
-  const parsedAccountInfo = {...accountInfo};
-  parsedAccountInfo.owner = parsedAccountInfo?.owner?.toBase58();  
+  const parsedAccountInfo = { ...accountInfo };
+  parsedAccountInfo.owner = parsedAccountInfo?.owner?.toBase58();
   return parsedAccountInfo;
-}
+};
 
 const MainAccount = () => {
   const { connection } = useConnection();
@@ -31,18 +31,20 @@ const MainAccount = () => {
   if (!accountInfo) return null;
 
   return (
-  <div>
-    <div className='section-header'><code className='method highlight'>getAccountInfo</code></div>
-
-    <div className='row'>
-      <div className='col-12'>
-        <ReactJson displayObjectSize={false} name={false} collapsed={1} src={parser(accountInfo)} />
+    <div>
+      <div className="section-header">
+        <code className="method highlight">getAccountInfo</code>
       </div>
-      <div className='col-12'>
-        <ReactJson displayObjectSize={false} name={false} collapsed={1} src={accountInfo} />
+
+      <div className="row">
+        <div className="col-12">
+          <ReactJson displayObjectSize={false} name={false} collapsed={1} src={parser(accountInfo)} />
+        </div>
+        <div className="col-12">
+          <ReactJson displayObjectSize={false} name={false} collapsed={1} src={accountInfo} />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 

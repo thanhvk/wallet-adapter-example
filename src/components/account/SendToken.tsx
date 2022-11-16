@@ -11,7 +11,7 @@ type FormValue = {
   mint: string;
   amount: number;
   decimals: number;
-}
+};
 
 const SendToken = () => {
   const { connection } = useConnection();
@@ -24,14 +24,14 @@ const SendToken = () => {
     mint: 'DSkswkeLKPL8coYXq6bggU7VyC8bXstXo8RDPm8pYLno',
     amount: 1,
     decimals: 6,
-  })
+  });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormValue(prev => ({
+    setFormValue((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const onSendToken = async () => {
     if (!publicKey) return;
@@ -43,8 +43,8 @@ const SendToken = () => {
         new PublicKey(formValue.mint),
         new PublicKey(formValue.receiver),
         new PublicKey(formValue.tokenAccount),
-        formValue.amount * 10**formValue.decimals,
-      );      
+        formValue.amount * 10 ** formValue.decimals
+      );
 
       const {
         context: { slot: minContextSlot },
@@ -55,21 +55,28 @@ const SendToken = () => {
       tx.recentBlockhash = blockhash;
 
       const sig = await sendTransaction(tx, connection, { minContextSlot });
-      setSignature(sig)
+      setSignature(sig);
     } catch (error) {
-      console.log(error);      
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="send-token">
-      <div className='section-header'>
-        <code className='method highlight'>Send token</code>
+      <div className="section-header">
+        <code className="method highlight">Send token</code>
       </div>
 
-      {!!signature &&
-        <div><code>View tx: <a href={`https://solscan.io/tx/${signature}?cluster=devnet`} target="_blank" rel="noreferrer">{signature}</a></code></div>
-      }
+      {!!signature && (
+        <div>
+          <code>
+            View tx:{' '}
+            <a href={`https://solscan.io/tx/${signature}?cluster=devnet`} target="_blank" rel="noreferrer">
+              {signature}
+            </a>
+          </code>
+        </div>
+      )}
 
       <div>
         <code className="input-label">Receiver</code>
@@ -95,13 +102,7 @@ const SendToken = () => {
 
       <div>
         <code className="input-label">Mint</code>
-        <input
-          name="mint"
-          className="input-styled"
-          placeholder="mint"
-          value={formValue.mint}
-          onChange={onChange}
-        />
+        <input name="mint" className="input-styled" placeholder="mint" value={formValue.mint} onChange={onChange} />
       </div>
 
       <div>
@@ -129,7 +130,9 @@ const SendToken = () => {
       </div>
 
       <div>
-        <button className="btn" onClick={onSendToken}>Send Token</button>
+        <button className="btn" onClick={onSendToken}>
+          Send Token
+        </button>
       </div>
     </div>
   );

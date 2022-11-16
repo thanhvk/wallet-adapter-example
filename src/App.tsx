@@ -59,15 +59,17 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
 
 const Content: FC = () => {
   return (
-    <div className='App'>
-      <div className='aside'><WalletMultiButton /></div>
-      <div className='main'>
+    <div className="App">
+      <div className="aside">
+        <WalletMultiButton />
+      </div>
+      <div className="main">
         <MainAccount />
-        <hr className='divider' />
+        <hr className="divider" />
         <TokenAccountList />
-        <hr className='divider' />
+        <hr className="divider" />
         <CreateFungibleToken />
-        <hr className='divider' />
+        <hr className="divider" />
         <SendToken />
       </div>
     </div>
