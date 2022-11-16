@@ -87,7 +87,7 @@ const TokenAccountList = () => {
                       <code>balance: {token.tokenAmount.uiAmount}</code>
                     </div>
                     <div>
-                      <code>balance: {token.tokenAmount.decimals}</code>
+                      <code>decimals: {token.tokenAmount.decimals}</code>
                     </div>
                     <div>
                       <code>program: {token.programOwner}</code>
