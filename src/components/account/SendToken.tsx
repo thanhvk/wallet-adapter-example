@@ -90,9 +90,9 @@ const SendToken = () => {
       </div>
 
       <div>
-        <code className="input-label">Token Amount</code>
+        <code className="input-label">Token Account</code>
         <input
-          name="tokenAmount"
+          name="tokenAccount"
           className="input-styled"
           placeholder="token account"
           value={formValue.tokenAccount}

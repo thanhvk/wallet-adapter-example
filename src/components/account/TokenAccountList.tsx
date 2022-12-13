@@ -39,9 +39,13 @@ const TokenAccountList = () => {
   const parsedTokenAccounts = useMemo(() => {
     if (!tokenAccountResult) return tokenAccountResult;
 
-    return tokenAccountResult.value.map((token: any) => {
+    let tokens = tokenAccountResult.value.map((token: any) => {
       return parser(token);
     });
+
+    tokens = tokens.sort((a: any, b: any) => b.tokenAmount.uiAmount - a.tokenAmount.uiAmount)
+
+    return tokens;
   }, [tokenAccountResult]);
 
   if (!tokenAccountResult) return null;
