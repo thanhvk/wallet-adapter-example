@@ -17,7 +17,11 @@ const parser = (tokenAccount: any) => {
   return parsedAccountInfo;
 };
 
-const TokenAccountList = () => {
+type TokenAccountListProps = {
+  tokenList: any[];
+}
+
+const TokenAccountList = ({ tokenList }: TokenAccountListProps) => {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
   const [tokenAccountResult, setTokenAccountResult] = useState<any>(null);
@@ -84,7 +88,7 @@ const TokenAccountList = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <code>{token.mint}</code>
+                        <code>{tokenList[token.mint].symbol}</code>
                       </a>
                     </div>
                     <div>

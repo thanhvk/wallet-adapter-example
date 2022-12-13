@@ -2,7 +2,9 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
+
 import CreateFungibleToken from './components/account/CreateFungibleToken';
 import MainAccount from './components/account/MainAccount';
 import SendToken from './components/account/SendToken';
@@ -60,19 +62,46 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const Content: FC = () => {
+  const [ tokenList, setTokenList ] = useState<any>({});
+
+  const fetchTokenList = useCallback(async () => {
+    const result = await axios.get('https://public-api.birdeye.so/public/tokenlist?sort_by=v24hUSD&sort_type=desc&offset=0&limit=-1')
+    
+    const tokens = result.data.data.tokens.reduce((agg: any, curr: any) => {
+      agg[curr.address] = curr
+
+      return agg;
+    }, {})
+
+    setTokenList(tokens)
+  }, [])
+
+  useEffect(() => {
+    fetchTokenList();
+  }, [fetchTokenList])
+
+  const [ tab, setTab ] = useState('web3')
+
   return (
     <div className="App">
       <div className="aside">
         <WalletMultiButton />
+        <div className='menu'>
+          <div className='menu-item' onClick={() => setTab('web3')}>Solana web3js</div>
+          <div className='menu-item' onClick={() => setTab('create')}>Create token</div>
+          <div className='menu-item' onClick={() => setTab('send')}>Send token</div>
+        </div>
       </div>
       <div className="main">
-        <MainAccount />
-        <hr className="divider" />
-        <TokenAccountList />
-        <hr className="divider" />
-        <CreateFungibleToken />
-        <hr className="divider" />
-        <SendToken />
+        {tab === 'web3' &&
+          <>
+            <MainAccount />
+            <hr className="divider" />
+            <TokenAccountList tokenList={tokenList} />
+          </>
+        }
+        {tab === 'create' && <CreateFungibleToken />}
+        {tab === 'send' && <SendToken />}
       </div>
     </div>
   );
